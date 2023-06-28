@@ -1,0 +1,86 @@
+\documentclass[
+    11pt, % Set the default font size, options include: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+%t, % Uncomment to vertically align all slide content to the top of the slide, rather than the default centered
+%aspectratio=169, % Uncomment to set the aspect ratio to a 16:9 ratio which matches the aspect ratio of 1080p and 4K screens and projectors
+]{beamer}
+\input{packages.tex}
+\newcommand{\versionmajor}{0}
+\newcommand{\versionminor}{1}
+\newcommand{\versionpatch}{2}
+\newcommand{\version}{\versionmajor.\versionminor.\versionpatch}
+\begin{document}
+
+% TITLE SLIDE ----------------------------------------------------------------------------
+\begin{frame}
+	\titlepage
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+% TABLE OF CONTENTS SLIDE ---------------------------------------------------------------
+\begin{frame}
+	\frametitle{Overview}
+	\tableofcontents
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+% PRESENTATION SLIDES --------------------------------------------------------------------
+\section{Section1}
+\frame{\tableofcontents[currentsection]}
+
+%-------------------------------------------------
+\subsection{Block}
+
+\begin{frame}
+    \frametitle{Frame Title}
+
+    \begin{block}{Block name}
+        Block content
+    \end{block}
+
+\end{frame}
+%------------------------------------------------
+\subsection{Columns}
+\begin{frame}
+    \frametitle{Two columns slide}
+    Full width text
+    \begin{columns}[c]
+		\begin{column}{0.5\linewidth}
+			left column text
+		\end{column}
+        \begin{column}{0.5\linewidth}
+            right column text
+        \end{column}
+    \end{columns}
+\end{frame}
+%------------------------------------------------
+\subsection{Code snippet}
+\begin{frame}[fragile]
+	\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+		apiVersion: apps/v1
+		kind: Deployment
+		metadata:
+		  name: php-apache
+		spec:
+		  selector:
+			matchLabels:
+			  run: php-apache
+		  replicas: 1
+		  template:
+			metadata:
+			  labels:
+				run: php-apache
+			spec:
+			  containers:
+			  - name: php-apache
+				image: registry.k8s.io/hpa-example
+				ports:
+				- containerPort: 80
+				resources:
+				  limits:
+					cpu: 500m
+				  requests:
+					cpu: 200m
+	\end{lstlisting}
+\end{frame}
+
+\end{document}

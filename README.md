@@ -1,0 +1,1 @@
+# Custom Beamer Template configured for VsCode
